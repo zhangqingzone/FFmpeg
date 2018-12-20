@@ -16,7 +16,7 @@ ADDI_CFLAGS="-marm"
 function build_one
 {
 ./configure \
---prefix=../outbin6 \
+--prefix=./output \
 --enable-shared \
 --disable-static \
 --disable-doc \
@@ -31,7 +31,6 @@ function build_one
 --enable-pthreads \
 --enable-jni \
 --disable-decoders \
---disable-avfilter \
 --enable-mediacodec \
 --enable-decoder=h264 \
 --enable-decoder=h264_crystalhd \
@@ -56,5 +55,9 @@ $ADDITIONAL_CONFIGURE_FLAG
 
 build_one
 
-#make -j8;make install
+make -j8;make install
+
+cp upx.sh output/lib
+cd output/lib
+#./upx.sh
 
